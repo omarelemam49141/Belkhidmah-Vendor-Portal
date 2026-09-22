@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils'
+import { assetPath, cn } from '@/lib/utils'
 
 export function BrandMark ({
   size = 40,
@@ -17,7 +17,7 @@ export function BrandMark ({
       aria-hidden={decorative || undefined}
     >
       {/* eslint-disable-next-line @next/next/no-img-element -- SVG brand mark */}
-      <img src="/images/logo.svg" alt={alt} width={size} height={size} className="h-full w-full object-contain" />
+      <img src={assetPath('/images/logo.svg')} alt={alt} width={size} height={size} className="h-full w-full object-contain" />
     </span>
   )
 }

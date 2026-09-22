@@ -2,6 +2,8 @@
 
 Admin + provider screens for packages between provider websites (CRM) and بالخدمة.
 
+Live: https://omarelemam49141.github.io/Belkhidmah-Vendor-Portal/
+
 ```bash
 npm install
 npm run dev
