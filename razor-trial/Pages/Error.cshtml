@@ -1,0 +1,17 @@
+﻿@page
+@model Belkhidmah.Web.Pages.ErrorModel
+@{
+    ViewData["Title"] = "Error";
+    ViewData["Page"] = "error";
+}
+
+<div class="relative flex min-h-screen items-center justify-center px-4">
+    <section class="glass-card-dark max-w-md rounded-2xl p-8 text-center">
+        <h1 class="mb-3 text-3xl font-extrabold">Error</h1>
+        <p class="text-white/75">Something went wrong.</p>
+        @if (Model.ShowRequestId)
+        {
+            <p class="mt-4 text-xs text-white/50">@Model.RequestId</p>
+        }
+    </section>
+</div>

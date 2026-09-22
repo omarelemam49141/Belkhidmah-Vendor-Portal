@@ -1,0 +1,66 @@
+:root {
+  --brand-magenta: #91288d;
+  --brand-pink: #db2c91;
+  --brand-lilac: #b268af;
+  --brand-blush: #f5c2df;
+  --brand-white: #ffffff;
+  --overlay-ink: #0b1324;
+  --overlay-mid: #162033;
+  --glow-cool: #4b6d94;
+
+  --trust-blue-50: #fdf5fb;
+  --trust-blue-100: #f5c2df;
+  --trust-blue-200: #e8b0d6;
+  --trust-blue-300: #d08ac3;
+  --trust-blue-400: #b268af;
+  --trust-blue-500: #a3449c;
+  --trust-blue-600: #91288d;
+  --trust-blue-700: #7a2277;
+  --trust-blue-800: #5c1a5a;
+  --trust-blue-900: #3d113c;
+
+  --warm-orange-50: #fef6fb;
+  --warm-orange-100: #f5c2df;
+  --warm-orange-200: #f09dcb;
+  --warm-orange-300: #e872b5;
+  --warm-orange-400: #e04da2;
+  --warm-orange-500: #db2c91;
+  --warm-orange-600: #c22682;
+  --warm-orange-700: #9e1e6a;
+  --warm-orange-800: #7a1752;
+  --warm-orange-900: #511037;
+
+  --impact-green-50: #fbf4fa;
+  --impact-green-100: #f5c2df;
+  --impact-green-200: #e8b5dc;
+  --impact-green-300: #d49ac8;
+  --impact-green-400: #c281bc;
+  --impact-green-500: #b268af;
+  --impact-green-600: #9a5498;
+  --impact-green-700: #7d427c;
+  --impact-green-800: #5f325e;
+  --impact-green-900: #432242;
+
+  --neutral-50: #fffafd;
+  --neutral-100: #f8eef5;
+  --neutral-200: #ecdce8;
+  --neutral-300: #d4bfce;
+  --neutral-400: #b394ab;
+  --neutral-500: #8f6e88;
+  --neutral-600: #6f536b;
+  --neutral-700: #523e50;
+  --neutral-800: #382a37;
+  --neutral-900: #221821;
+  --neutral-950: #140c14;
+
+  --font-sans: var(--font-cairo), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-tajawal), var(--font-cairo), ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: var(--font-tajawal), var(--font-cairo), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+}

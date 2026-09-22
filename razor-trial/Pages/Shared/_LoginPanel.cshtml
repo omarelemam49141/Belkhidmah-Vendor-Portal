@@ -1,0 +1,71 @@
+@model Belkhidmah.Web.Pages.IndexModel
+
+<section
+    id="login-panel"
+    class="glass-card-dark mx-auto w-full max-w-md rounded-2xl p-6 shadow-[0_10px_25px_-5px_rgba(11,19,36,0.55)] sm:p-8"
+    x-data="{ show: false }">
+    <h2 class="mb-1 text-2xl font-extrabold text-white">@Model.T("brandTitle")</h2>
+    <p class="mb-6 text-sm leading-relaxed text-white/70">@Model.T("demoHint")</p>
+
+    <form
+        method="post"
+        class="space-y-4"
+        hx-post="/"
+        hx-target="#login-panel"
+        hx-swap="outerHTML"
+        hx-disabled-elt="find button[type=submit]">
+        @Html.AntiForgeryToken()
+
+        <div>
+            <label class="field-label" for="Email">@Model.T("email")</label>
+            <input
+                id="Email"
+                name="Email"
+                type="email"
+                autocomplete="username"
+                value="@Model.Email"
+                class="field-input"
+                aria-invalid="@(Model.EmailError is null ? "false" : "true")" />
+            @if (Model.EmailError is not null)
+            {
+                <p class="mt-1 text-sm text-rose-300">@Model.EmailError</p>
+            }
+        </div>
+
+        <div>
+            <label class="field-label" for="Password">@Model.T("password")</label>
+            <input
+                id="Password"
+                name="Password"
+                :type="show ? 'text' : 'password'"
+                type="password"
+                autocomplete="current-password"
+                class="field-input" />
+            @if (Model.PasswordError is not null)
+            {
+                <p class="mt-1 text-sm text-rose-300">@Model.PasswordError</p>
+            }
+        </div>
+
+        <label class="flex cursor-pointer items-center gap-2 text-sm text-white/80">
+            <input type="checkbox" class="checkbox checkbox-sm checkbox-secondary" x-model="show" />
+            @Model.T("showPassword")
+        </label>
+
+        @if (Model.FormError is not null)
+        {
+            <div class="alert alert-error text-sm" role="alert">
+                <span>@Model.FormError</span>
+            </div>
+        }
+
+        <button type="submit" class="btn-brand">
+            <span class="htmx-indicator loading loading-spinner loading-sm"></span>
+            <span>@Model.T("signIn")</span>
+        </button>
+
+        <a asp-page="/Forgot" class="block text-sm font-medium text-brand-blush underline-offset-4 hover:text-white hover:underline">
+            @Model.T("forgot")
+        </a>
+    </form>
+</section>

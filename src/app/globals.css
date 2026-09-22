@@ -1,0 +1,228 @@
+@import "tailwindcss";
+@import "../styles/design-tokens.css";
+
+@plugin "tailwindcss-animate";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-cairo), ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: var(--font-tajawal), var(--font-cairo), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-tajawal), var(--font-cairo), ui-sans-serif, system-ui, sans-serif;
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-brand-magenta: var(--brand-magenta);
+  --color-brand-pink: var(--brand-pink);
+  --color-brand-lilac: var(--brand-lilac);
+  --color-brand-blush: var(--brand-blush);
+  --color-brand-white: var(--brand-white);
+  --color-overlay-ink: var(--overlay-ink);
+  --color-overlay-mid: var(--overlay-mid);
+  --color-glow-cool: var(--glow-cool);
+  --color-neutral-50: var(--neutral-50);
+  --color-neutral-100: var(--neutral-100);
+  --color-neutral-200: var(--neutral-200);
+  --color-neutral-300: var(--neutral-300);
+  --color-neutral-400: var(--neutral-400);
+  --color-neutral-500: var(--neutral-500);
+  --color-neutral-600: var(--neutral-600);
+  --color-neutral-700: var(--neutral-700);
+  --color-neutral-800: var(--neutral-800);
+  --color-neutral-900: var(--neutral-900);
+  --color-neutral-950: var(--neutral-950);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --background: var(--brand-white);
+  --foreground: var(--neutral-900);
+  --card: var(--brand-white);
+  --card-foreground: var(--neutral-900);
+  --popover: var(--brand-white);
+  --popover-foreground: var(--neutral-900);
+  --primary: var(--brand-magenta);
+  --primary-foreground: var(--brand-white);
+  --secondary: var(--brand-pink);
+  --secondary-foreground: var(--brand-white);
+  --muted: var(--neutral-100);
+  --muted-foreground: var(--neutral-600);
+  --accent: var(--brand-blush);
+  --accent-foreground: var(--brand-magenta);
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: var(--brand-white);
+  --border: var(--neutral-200);
+  --input: var(--neutral-200);
+  --ring: var(--brand-pink);
+  --radius: 0.75rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    overflow-x: clip;
+  }
+  body {
+    @apply bg-neutral-50 text-foreground antialiased;
+  }
+  .locale-ar {
+    font-family: var(--font-tajawal), var(--font-cairo), ui-sans-serif, sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+  ::selection {
+    background: var(--brand-pink);
+    color: white;
+  }
+}
+
+@layer components {
+  .glass-card-dark {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .field-label {
+    @apply mb-1.5 block text-sm font-medium text-white/90;
+  }
+
+  .field-input {
+    @apply w-full rounded-lg border border-white/20 bg-white/8 px-3 py-2.5 text-white outline-none;
+  }
+
+  .field-input:focus-visible {
+    border-color: var(--brand-pink);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand-pink) 40%, transparent);
+  }
+
+  .btn-brand {
+    @apply inline-flex w-full items-center justify-center rounded-lg px-8 py-3.5 text-base font-bold text-white transition-all duration-300;
+    background-image: linear-gradient(90deg, var(--brand-pink), var(--brand-magenta), var(--brand-pink));
+    background-size: 200% 100%;
+    box-shadow: 0 10px 25px -5px rgb(11 19 36 / 0.55);
+  }
+
+  .btn-brand:hover {
+    background-position: 100% 0;
+    box-shadow: 0 15px 30px -5px rgb(11 19 36 / 0.7);
+  }
+
+  .btn-brand:active {
+    transform: scale(0.98);
+  }
+
+  .stat-card {
+    @apply rounded-2xl border border-neutral-200 bg-white p-4;
+  }
+
+  .stat-card-label {
+    @apply text-xs font-semibold tracking-wide text-neutral-500 uppercase;
+  }
+
+  .stat-card-value {
+    @apply mt-1 text-2xl font-extrabold text-brand-magenta;
+  }
+
+  .list-panel {
+    @apply rounded-2xl border border-neutral-200 bg-white;
+  }
+
+  .app-label {
+    @apply mb-1.5 block text-sm font-medium text-neutral-700;
+  }
+
+  .app-field {
+    @apply rounded-lg border border-neutral-200 bg-white px-3 py-2.5 text-sm outline-none disabled:bg-neutral-50 disabled:text-neutral-500;
+  }
+
+  .app-field:focus-visible {
+    border-color: var(--brand-pink);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand-pink) 40%, transparent);
+  }
+
+  .app-error {
+    @apply text-sm text-rose-700;
+  }
+
+  .list-row {
+    @apply px-4 py-3 text-sm transition-colors duration-150;
+  }
+
+  .list-row:hover {
+    @apply bg-brand-magenta/5 text-brand-magenta;
+  }
+
+  .data-table {
+    @apply min-w-full text-sm;
+  }
+
+  .data-table thead th {
+    @apply border-b border-neutral-200 px-4 py-3 text-start text-xs font-semibold tracking-wide text-neutral-500 uppercase;
+  }
+
+  .data-table tbody tr {
+    @apply border-t border-neutral-200 transition-colors duration-150;
+  }
+
+  .data-table tbody tr:hover {
+    @apply bg-brand-magenta/5 text-brand-magenta;
+  }
+
+  .data-table tbody tr.is-selected {
+    @apply bg-brand-blush text-brand-magenta;
+  }
+
+  .data-table td {
+    @apply px-4 py-3;
+  }
+
+  .filter-control {
+    @apply rounded-lg border border-neutral-200 bg-white px-3 py-2 text-sm outline-none;
+  }
+
+  .filter-control:focus-visible {
+    border-color: var(--brand-pink);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand-pink) 40%, transparent);
+  }
+
+  .overlay-scrim {
+    @apply bg-overlay-ink/45;
+  }
+
+  .overlay-panel {
+    @apply rounded-2xl border border-neutral-200 bg-white;
+  }
+
+  .overlay-drawer {
+    @apply rounded-s-2xl border-s border-neutral-200 bg-white;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

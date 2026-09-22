@@ -1,0 +1,50 @@
+﻿@using Belkhidmah.Web.Ui
+@{
+    var isAr = UiCopy.IsAr(Context.Request);
+    var lang = UiCopy.Lang(Context.Request);
+    var title = ViewData["Title"] as string ?? UiCopy.T(Context.Request, "brandTitle");
+    var pageKey = ViewData["Page"] as string ?? "";
+    var showSplash = pageKey == "login";
+}
+<!DOCTYPE html>
+<html lang="@lang"
+      dir="@(isAr ? "rtl" : "ltr")"
+      class="@(isAr ? "locale-ar" : "")"
+      data-theme="belkhidmah">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@title · بالخدمة</title>
+    <script>
+        (function(){try{var d=document.documentElement;if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){d.setAttribute('data-motion','none');return;}var n=navigator;var save=n.connection&&n.connection.saveData;var mem=n.deviceMemory;var weak=!!save||(typeof mem==='number'&&mem<=4);var fine=window.matchMedia('(min-width: 768px) and (hover: hover) and (pointer: fine)').matches;d.setAttribute('data-motion',(!fine||weak)?'lite':'full');}catch(e){document.documentElement.setAttribute('data-motion','lite');}})();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root { --font-cairo: "Cairo"; --font-tajawal: "Tajawal"; }
+    </style>
+    <link rel="stylesheet" href="~/css/app.css" asp-append-version="true" />
+    <link rel="icon" href="~/images/logo.svg" type="image/svg+xml" />
+</head>
+<body class="min-h-screen" data-page="@pageKey">
+    @if (showSplash)
+    {
+        <div class="page-splash" data-splash>
+            <div class="relative aspect-square w-[min(42%,8.5rem)]">
+                <span class="pointer-events-none absolute inset-0 rounded-full border-2 border-brand-blush border-t-brand-pink hero-splash-spin" aria-hidden="true"></span>
+                <div class="flex h-full w-full items-center justify-center p-[18%] hero-splash-float">
+                    <img src="~/images/logo.svg" alt="" class="h-full w-full object-contain" />
+                </div>
+            </div>
+        </div>
+    }
+
+    @RenderBody()
+
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.4/dist/htmx.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
+    <script src="~/js/app.js" asp-append-version="true" defer></script>
+</body>
+</html>

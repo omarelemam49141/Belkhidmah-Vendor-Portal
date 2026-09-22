@@ -1,0 +1,13 @@
+{
+  "name": "belkhidmah-razor-trial",
+  "private": true,
+  "scripts": {
+    "css": "npx @tailwindcss/cli -i ./wwwroot/css/input.css -o ./wwwroot/css/app.css",
+    "css:watch": "npx @tailwindcss/cli -i ./wwwroot/css/input.css -o ./wwwroot/css/app.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.13",
+    "daisyui": "^5.1.13",
+    "tailwindcss": "^4.1.13"
+  }
+}

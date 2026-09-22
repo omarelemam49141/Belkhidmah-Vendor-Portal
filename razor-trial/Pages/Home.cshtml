@@ -1,0 +1,84 @@
+@page
+@model Belkhidmah.Web.Pages.HomeModel
+@{
+    ViewData["Title"] = Model.T("home");
+    ViewData["Page"] = "home";
+    var otherLang = Model.IsAr ? "en" : "ar";
+}
+
+<div class="app" x-data="{ nav: false, soon: false }">
+    <div class="app-scrim" x-show="nav" x-cloak x-transition.opacity x-on:click="nav = false"></div>
+
+    <aside class="app-aside" :class="{ 'is-open': nav }">
+        <div class="app-brand">
+            <img src="~/images/logo.svg" alt="" width="36" height="36" />
+            <div>
+                <p class="app-brand-kicker">بالخدمة</p>
+                <p class="app-brand-sub">@Model.T("mitmMock")</p>
+            </div>
+        </div>
+        <nav class="app-nav">
+            @foreach (var item in Model.Nav)
+            {
+                if (item.Built)
+                {
+                    <a class="app-nav-link is-active" href="@item.Href">@Model.T(item.Key)</a>
+                }
+                else
+                {
+                    <a class="app-nav-link" href="#" x-on:click.prevent="soon = true; nav = false">@Model.T(item.Key)</a>
+                }
+            }
+        </nav>
+    </aside>
+
+    <div class="app-frame">
+        <header class="app-top">
+            <button type="button" class="app-menu" x-on:click="nav = !nav" aria-label="@Model.T("openMenu")">
+                <span></span><span></span><span></span>
+            </button>
+            <div>
+                <p class="app-kicker">@Model.DisplayName</p>
+                <h1>@Model.T("home")</h1>
+            </div>
+            <div class="app-top-actions">
+                <a class="app-lang" href="?lang=@otherLang">@Model.T("lang")</a>
+                <span class="app-user">@(Model.Account.Role == "admin" ? Model.T("admin") : Model.DisplayName)</span>
+                <form method="post" asp-page-handler="Logout">
+                    <button type="submit" class="btn-outline">@Model.T("logOut")</button>
+                </form>
+            </div>
+        </header>
+
+        <main class="app-main" data-enter-panel>
+            <p class="app-lead">@Model.T("homeLead")</p>
+
+            <div class="app-banner" x-show="soon" x-cloak x-transition>
+                <span>@Model.T("trialSoon")</span>
+                <button type="button" class="app-banner-close" x-on:click="soon = false">×</button>
+            </div>
+
+            @if (Model.Actions.Count > 0)
+            {
+                <div class="app-actions">
+                    @foreach (var action in Model.Actions)
+                    {
+                        <button type="button" class="btn-outline" x-on:click="soon = true">@Model.T(action.Key)</button>
+                    }
+                </div>
+            }
+
+            <div class="stat-grid @(Model.Account.Role == "admin" ? "is-admin" : "is-provider")">
+                @foreach (var stat in Model.Stats)
+                {
+                    <article class="stat-card">
+                        <p>@Model.T(stat.Key)</p>
+                        <strong>@stat.Value</strong>
+                    </article>
+                }
+            </div>
+
+            <p class="app-meta">@Model.T("lastPullJob")</p>
+        </main>
+    </div>
+</div>
